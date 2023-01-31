@@ -1,6 +1,7 @@
 package com.codeclan.example.pirateservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -19,7 +20,8 @@ public class Pirate {
 
     @ManyToOne
     @JoinColumn(name="ship_id", nullable=false)
-    @JsonIgnoreProperties({"pirates"})
+//    @JsonIgnoreProperties({"pirates"})
+    @JsonManagedReference
     private Ship ship;
 
     @ManyToMany
@@ -102,5 +104,9 @@ public class Pirate {
 
     public List<Raid> getRaids() {
         return raids;
+    }
+
+    public void addRaid(Raid raid) {
+        this.raids.add(raid);
     }
 }
