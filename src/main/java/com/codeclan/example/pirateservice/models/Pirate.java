@@ -20,8 +20,8 @@ public class Pirate {
 
     @ManyToOne
     @JoinColumn(name="ship_id", nullable=false)
-//    @JsonIgnoreProperties({"pirates"})
-    @JsonManagedReference
+    @JsonIgnoreProperties({"pirates"})
+//    @JsonManagedReference
     private Ship ship;
 
     @ManyToMany
