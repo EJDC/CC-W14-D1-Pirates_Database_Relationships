@@ -22,7 +22,7 @@ public class Raid {
     private int loot;
 
     @ManyToMany
-    @JsonIgnoreProperties({"raids"})
+//    @JsonIgnoreProperties({"raids"})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "pirates_raids",

@@ -99,4 +99,8 @@ public class Pirate {
     public void setShip(Ship ship) {
         this.ship = ship;
     }
+
+    public List<Raid> getRaids() {
+        return raids;
+    }
 }
