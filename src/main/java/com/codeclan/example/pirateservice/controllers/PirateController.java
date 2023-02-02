@@ -14,8 +14,7 @@ public class PirateController {
 
     @Autowired
     PirateRepository pirateRepository;
-
-
+    
     @GetMapping(value = "/pirates")
     public ResponseEntity<List<Pirate>> getAllPirates() {
         return new ResponseEntity<>(pirateRepository.findAll(), HttpStatus.OK);

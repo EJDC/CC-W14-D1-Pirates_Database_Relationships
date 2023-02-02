@@ -32,5 +32,10 @@ public ResponseEntity<List<Ship>> getAllShips() {
         return new ResponseEntity<>(ship, HttpStatus.CREATED);
     };
 
+@GetMapping(value = "/ships/pirates")
+    public ResponseEntity<List<Ship>> findShipsThatHavePiratesNamedQueryString(
+            @RequestParam(name="squirrel") String first_name) {
+    return new ResponseEntity<>(shipRepository.findShipsByPiratesFirstName(first_name), HttpStatus.OK);
+}
 
 }

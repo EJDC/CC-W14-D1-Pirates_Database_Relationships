@@ -1,6 +1,7 @@
 package com.codeclan.example.pirateservice.controllers;
 
 import com.codeclan.example.pirateservice.models.Raid;
+import com.codeclan.example.pirateservice.models.Ship;
 import com.codeclan.example.pirateservice.repositories.RaidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,10 @@ public class RaidController {
     @Autowired
     RaidRepository raidRepository;
 
-    @GetMapping(value = "/raids")
-    public ResponseEntity<List<Raid>> getAllRaids() {
-        return new ResponseEntity<>(raidRepository.findAll(), HttpStatus.OK);
-    }
+//    @GetMapping(value = "/raids")
+//    public ResponseEntity<List<Raid>> getAllRaids() {
+//        return new ResponseEntity<>(raidRepository.findAll(), HttpStatus.OK);
+//    }
 
     @GetMapping(value = "/raids/{id}")
     public ResponseEntity getRaid(@PathVariable Long id) {
@@ -31,6 +32,15 @@ public class RaidController {
         return new ResponseEntity<>(raid, HttpStatus.CREATED);
     };
 
+    @GetMapping(value = "/raids")
+    public ResponseEntity<List<Raid>> findRaidsFilterByLocation(
+            @RequestParam(name="location", required = false) String location) {
+        if (location == null) {
+            return new ResponseEntity<>(raidRepository.findAll(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(raidRepository.findRaidsByLocation(location), HttpStatus.OK);
+        }
+    }
 
 
 }
